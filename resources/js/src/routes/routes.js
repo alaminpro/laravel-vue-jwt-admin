@@ -4,7 +4,10 @@ const routes = [
     {
         path: "/",
         name: "home",
-        component: home
+        component: home,
+        meta: {
+            breadcrumb: "Home Page"
+        }
     }
 ];
 
