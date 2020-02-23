@@ -9,7 +9,6 @@ const routes = [
         name: "home",
         component: Home,
         meta: {
-            breadcrumb: "Home Page",
             auth: true
         },
 
@@ -18,6 +17,9 @@ const routes = [
         path: "*",
         name: "notfound",
         component: NotFound,
+        meta: {
+            auth: true
+        },
     },
     {
         path: '/login',
