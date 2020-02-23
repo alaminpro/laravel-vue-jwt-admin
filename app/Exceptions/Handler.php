@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -31,8 +32,6 @@ class Handler extends ExceptionHandler
      *
      * @param  \Exception  $exception
      * @return void
-     *
-     * @throws \Exception
      */
     public function report(Exception $exception)
     {
@@ -44,12 +43,17 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Exception
+     * @return \Illuminate\Http\Response
      */
     public function render($request, Exception $exception)
     {
+        // API requests need header Accept: application/json
+        if ($exception instanceof ModelNotFoundException && $request->wantsJson()) {
+            return response()->json([
+                'error' => 'Resource not found'
+            ], 404);
+        }
+
         return parent::render($request, $exception);
     }
 }

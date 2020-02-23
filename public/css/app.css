@@ -15076,9 +15076,8 @@ form label {
 
 input.input-material {
   width: 100%;
-  border: none;
-  border-bottom: 1px solid #444951;
-  padding: 10px 0;
+  border: 1px solid #444951;
+  padding: 8px 5px;
   background: none;
   color: #b9babd;
 }
@@ -15087,9 +15086,12 @@ input.input-material:focus {
   border-color: #db6574;
 }
 
+.btn {
+  cursor: pointer !important;
+}
+
 input.input-material ~ label {
   color: #aaa;
-  position: absolute;
   top: 14px;
   left: 0;
   cursor: text;
